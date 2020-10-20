@@ -1,0 +1,7 @@
+C:\Users\nob\source\repos\Flyweight y Factory\Flyweight y Factory\obj\Debug\Flyweight y Factory.csprojAssemblyReference.cache
+C:\Users\nob\source\repos\Flyweight y Factory\Flyweight y Factory\obj\Debug\Flyweight y Factory.csproj.CoreCompileInputs.cache
+C:\Users\nob\source\repos\Flyweight y Factory\Flyweight y Factory\bin\Debug\Flyweight y Factory.exe.config
+C:\Users\nob\source\repos\Flyweight y Factory\Flyweight y Factory\bin\Debug\Flyweight y Factory.exe
+C:\Users\nob\source\repos\Flyweight y Factory\Flyweight y Factory\bin\Debug\Flyweight y Factory.pdb
+C:\Users\nob\source\repos\Flyweight y Factory\Flyweight y Factory\obj\Debug\Flyweight y Factory.exe
+C:\Users\nob\source\repos\Flyweight y Factory\Flyweight y Factory\obj\Debug\Flyweight y Factory.pdb
