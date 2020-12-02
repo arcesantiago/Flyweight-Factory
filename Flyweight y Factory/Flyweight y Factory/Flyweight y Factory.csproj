@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\MovimientosExcpetion.cs" />
     <Compile Include="Factory\ConcreteCreators\AjedrezCreator.cs" />
     <Compile Include="Factory\ConcreteCreators\DamasCreator.cs" />
     <Compile Include="Factory\ConcreteProducts\Ajedrez.cs" />
@@ -56,9 +57,10 @@
     <Compile Include="Flyweight\ConcreteFlyweight\Ajedrez\Rey.cs" />
     <Compile Include="Flyweight\ConcreteFlyweight\Ajedrez\Torre.cs" />
     <Compile Include="Flyweight\ConcreteFlyweight\Damas\Dama.cs" />
-    <Compile Include="Flyweight\CustomExceptions\MovimientosExceptions.cs" />
     <Compile Include="Flyweight\FlyweightFactory\PiezaFactory.cs" />
-    <Compile Include="Flyweight\Flyweight\IPieza.cs" />
+    <Compile Include="Flyweight\Flyweight\Pieza.cs" />
+    <Compile Include="Jugadores\Jugador.cs" />
+    <Compile Include="Jugadores\JugadorPieza.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

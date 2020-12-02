@@ -1,75 +1,70 @@
-﻿using Flyweight_y_Factory.Factory.Products;
-using Flyweight_y_Factory.Flyweight.CustomExceptions;
+﻿using Flyweight_y_Factory.Exceptions;
+using Flyweight_y_Factory.Factory.Products;
+
 using Flyweight_y_Factory.Flyweight.Flyweight;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Flyweight_y_Factory.Flyweight.ConcreteFlyweight.Ajedrez
 {
-    class Caballo : IPieza
+    class Caballo : Pieza
     {
-        public char nombrePieza {get;set;}
 
-        public Caballo()
+        public Caballo(char nombrePieza) : base(nombrePieza)
         {
-            this.nombrePieza = 'C';
+
         }
 
 
-
-        public void Mover(int[] piezaSeleccionada, int[] movimientoSeleccionado)
+        public override void Mover(int piezaSeleccionadaX, int piezaSeleccionadaY, int movimientoSeleccionadoX, int movimientoSeleccionadoY)
         {
-            if (movimientoSeleccionado[0] > piezaSeleccionada[0] && movimientoSeleccionado[1] > piezaSeleccionada[1])
-                if (piezaSeleccionada[0] + 1 == movimientoSeleccionado[0] && piezaSeleccionada[1] + 2 == movimientoSeleccionado[1] ||
-                    piezaSeleccionada[0] + 2 == movimientoSeleccionado[0] && piezaSeleccionada[1] + 1 == movimientoSeleccionado[1])
+            if (movimientoSeleccionadoX > piezaSeleccionadaX && movimientoSeleccionadoY > piezaSeleccionadaY)
+                if (piezaSeleccionadaX + 1 == movimientoSeleccionadoX && piezaSeleccionadaY + 2 == movimientoSeleccionadoY ||
+                    piezaSeleccionadaX + 2 == movimientoSeleccionadoX && piezaSeleccionadaY + 1 == movimientoSeleccionadoY)
                 {
-                    if (Product.tablero[movimientoSeleccionado[0], movimientoSeleccionado[1]] != null && Product.jugadores[movimientoSeleccionado[0], movimientoSeleccionado[1]] == Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]])
+                    if (Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY] != null && Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY] == Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY])
                         throw new MismoColorException();
                     else
                     {
-                        Product.tablero[movimientoSeleccionado[0], movimientoSeleccionado[1]] = Product.tablero[piezaSeleccionada[0], piezaSeleccionada[1]];
-                        Product.jugadores[movimientoSeleccionado[0], movimientoSeleccionado[1]] = Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]];
-                        Product.tablero[piezaSeleccionada[0], piezaSeleccionada[1]] = null;
-                        Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]] = ' ';
+                        Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY] = Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY];
+
+                        Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY] = null;
+
                     }
                 }
                 else
 
                     throw new MovimientoInvalidoException();
-            if (movimientoSeleccionado[0] < piezaSeleccionada[0] && movimientoSeleccionado[1] < piezaSeleccionada[1])
-                if (piezaSeleccionada[0] - 1 == movimientoSeleccionado[0] && piezaSeleccionada[1] - 2 == movimientoSeleccionado[1] ||
-                    piezaSeleccionada[0] - 2 == movimientoSeleccionado[0] && piezaSeleccionada[1] - 1 == movimientoSeleccionado[1])
+            if (movimientoSeleccionadoX < piezaSeleccionadaX && movimientoSeleccionadoY < piezaSeleccionadaY)
+                if (piezaSeleccionadaX - 1 == movimientoSeleccionadoX && piezaSeleccionadaY - 2 == movimientoSeleccionadoY ||
+                    piezaSeleccionadaX - 2 == movimientoSeleccionadoX && piezaSeleccionadaY - 1 == movimientoSeleccionadoY)
                 {
-                    if (Product.tablero[movimientoSeleccionado[0], movimientoSeleccionado[1]] != null && Product.jugadores[movimientoSeleccionado[0], movimientoSeleccionado[1]] == Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]])
+                    if (Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY] != null && Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY] == Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY])
                         throw new MismoColorException();
                     else
                     {
-                        Product.tablero[movimientoSeleccionado[0], movimientoSeleccionado[1]] = Product.tablero[piezaSeleccionada[0], piezaSeleccionada[1]];
-                        Product.jugadores[movimientoSeleccionado[0], movimientoSeleccionado[1]] = Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]];
-                        Product.tablero[piezaSeleccionada[0], piezaSeleccionada[1]] = null;
-                        Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]] = ' ';
+                        Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY] = Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY];
+   
+                        Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY] = null;
+
                     }
                 }
                 else
 
                     throw new MovimientoInvalidoException();
-            if (movimientoSeleccionado[0] < piezaSeleccionada[0] && movimientoSeleccionado[1] > piezaSeleccionada[1] || movimientoSeleccionado[0] > piezaSeleccionada[0] && movimientoSeleccionado[1] < piezaSeleccionada[1])
-                if (piezaSeleccionada[0] - 1 == movimientoSeleccionado[0] && piezaSeleccionada[1] + 2 == movimientoSeleccionado[1] ||
-                    piezaSeleccionada[0] - 2 == movimientoSeleccionado[0] && piezaSeleccionada[1] + 1 == movimientoSeleccionado[1] ||
-                    piezaSeleccionada[0] + 1 == movimientoSeleccionado[0] && piezaSeleccionada[1] - 2 == movimientoSeleccionado[1] ||
-                    piezaSeleccionada[0] + 2 == movimientoSeleccionado[0] && piezaSeleccionada[1] - 1 == movimientoSeleccionado[1])
+            if (movimientoSeleccionadoX < piezaSeleccionadaX && movimientoSeleccionadoY > piezaSeleccionadaY || movimientoSeleccionadoX > piezaSeleccionadaX && movimientoSeleccionadoY < piezaSeleccionadaY)
+                if (piezaSeleccionadaX - 1 == movimientoSeleccionadoX && piezaSeleccionadaY + 2 == movimientoSeleccionadoY ||
+                    piezaSeleccionadaX - 2 == movimientoSeleccionadoX && piezaSeleccionadaY + 1 == movimientoSeleccionadoY ||
+                    piezaSeleccionadaX + 1 == movimientoSeleccionadoX && piezaSeleccionadaY - 2 == movimientoSeleccionadoY ||
+                    piezaSeleccionadaX + 2 == movimientoSeleccionadoX && piezaSeleccionadaY - 1 == movimientoSeleccionadoY)
                 {
-                    if (Product.tablero[movimientoSeleccionado[0], movimientoSeleccionado[1]] != null && Product.jugadores[movimientoSeleccionado[0], movimientoSeleccionado[1]] == Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]])
+                    if (Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY] != null && Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY].jugador == Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY].jugador)
                         throw new MovimientoInvalidoException();
                     else
                     {
-                        Product.tablero[movimientoSeleccionado[0], movimientoSeleccionado[1]] = Product.tablero[piezaSeleccionada[0], piezaSeleccionada[1]];
-                        Product.jugadores[movimientoSeleccionado[0], movimientoSeleccionado[1]] = Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]];
-                        Product.tablero[piezaSeleccionada[0], piezaSeleccionada[1]] = null;
-                        Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]] = ' ';
+                        Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY] = Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY];
+   
+                        Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY] = null;
+    
                     }
                 }
                 else

@@ -15,5 +15,6 @@ namespace Flyweight_y_Factory.Factory.ConcreteCreators
         {
             return new Damas();
         }
+
     }
 }

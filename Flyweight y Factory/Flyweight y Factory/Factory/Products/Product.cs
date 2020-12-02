@@ -1,27 +1,21 @@
-﻿using Flyweight_y_Factory.Flyweight.CustomExceptions;
-using Flyweight_y_Factory.Flyweight.Flyweight;
+﻿using Flyweight_y_Factory.Exceptions;
+
+using Flyweight_y_Factory.Jugadores;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Flyweight_y_Factory.Factory.Products
 {
+   
     abstract class Product
     {
   
-            public static IPieza[,] tablero;
-            public static char[,] jugadores;
-            public char blanco;
-            public char negro;
+            public static JugadorPieza[,] tablero;
 
             public Product()
             {
-                tablero = new IPieza[8, 8];
-                jugadores = new char[8, 8];
-                blanco = 'B';
-                negro = 'N';
+                tablero = new JugadorPieza[8, 8];
+
             }
 
             enum Fila
@@ -50,7 +44,7 @@ namespace Flyweight_y_Factory.Factory.Products
                     Console.Write("{0} ", y + 1);
                     for (int x = 0; x < 8; x++)
                     {
-                        Console.Write("|{0}", tablero[x, y] != null ? tablero[x, y].nombrePieza + jugadores[x, y].ToString() : "  ");
+                        Console.Write("|{0}", tablero[x, y] != null ? tablero[x, y].pieza.nombrePieza.ToString() +  tablero[x, y].jugador.color : "  ");
                     }
                     Console.WriteLine("|");
                 }
@@ -77,7 +71,7 @@ namespace Flyweight_y_Factory.Factory.Products
 
                     seleccion = ValidarSeleccion(seleccionarPieza);
 
-                    IPieza piezaSeleccionada = tablero[seleccion[0], seleccion[1]];
+                    JugadorPieza piezaSeleccionada = tablero[seleccion[0], seleccion[1]];
 
                     if (piezaSeleccionada == null)
                         throw new Exception("No hay piezas en el casillero " + seleccionarPieza);
@@ -87,7 +81,7 @@ namespace Flyweight_y_Factory.Factory.Products
 
                     int[] movimientoSeleccionado = ValidarSeleccion(seleccionarMovimiento);
 
-                    piezaSeleccionada.Mover(seleccion, movimientoSeleccionado);
+                    piezaSeleccionada.pieza.Mover(seleccion[0], seleccion[1], movimientoSeleccionado[0], movimientoSeleccionado[1]);
 
                 }
                 catch (Exception ex)

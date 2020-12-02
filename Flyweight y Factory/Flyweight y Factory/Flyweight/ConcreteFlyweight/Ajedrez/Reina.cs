@@ -1,88 +1,85 @@
-﻿using Flyweight_y_Factory.Factory.Products;
-using Flyweight_y_Factory.Flyweight.CustomExceptions;
+﻿using Flyweight_y_Factory.Exceptions;
+using Flyweight_y_Factory.Factory.Products;
+
 using Flyweight_y_Factory.Flyweight.Flyweight;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Flyweight_y_Factory.Flyweight.ConcreteFlyweight.Ajedrez
 {
-    class Reina : IPieza
+    class Reina : Pieza
     {
-        public char nombrePieza {get;set;}
 
-        public Reina()
+        public Reina(char nombrePieza) : base(nombrePieza)
         {
-            this.nombrePieza = 'r';
+
         }
 
 
 
-        public void Mover(int[] piezaSeleccionada, int[] movimientoSeleccionado)
+        public override void Mover(int piezaSeleccionadaX, int piezaSeleccionadaY, int movimientoSeleccionadoX, int movimientoSeleccionadoY)
         {
-            if (movimientoSeleccionado[0] == piezaSeleccionada[0] || movimientoSeleccionado[1] == piezaSeleccionada[1])
-                if (movimientoSeleccionado[0] != piezaSeleccionada[0] && movimientoSeleccionado[1] != piezaSeleccionada[1])
+            if (movimientoSeleccionadoX == piezaSeleccionadaX || movimientoSeleccionadoY == piezaSeleccionadaY)
+                if (movimientoSeleccionadoX != piezaSeleccionadaX && movimientoSeleccionadoY != piezaSeleccionadaY)
                     throw new MovimientoInvalidoException();
-                else if (movimientoSeleccionado[0] > piezaSeleccionada[0])
+                else if (movimientoSeleccionadoX > piezaSeleccionadaX)
                 {
-                    var distancia = movimientoSeleccionado[0] - piezaSeleccionada[0];
-                    var incrementaPosicion = piezaSeleccionada[0];
+                    var distancia = movimientoSeleccionadoX - piezaSeleccionadaX;
+                    var incrementaPosicion = piezaSeleccionadaX;
                     for (int i = 0; i < distancia - 1; i++)
                     {
-                        var hayObstaculo = Product.tablero[++incrementaPosicion, piezaSeleccionada[1]] != null;
+                        var hayObstaculo = Product.tablero[++incrementaPosicion, piezaSeleccionadaY] != null;
 
                         if (hayObstaculo)
                             throw new ObstaculoException();
                     }
                 }
-                else if (movimientoSeleccionado[0] < piezaSeleccionada[0])
+                else if (movimientoSeleccionadoX < piezaSeleccionadaX)
                 {
-                    var distancia = piezaSeleccionada[0] - movimientoSeleccionado[0];
-                    var incrementaPosicion = piezaSeleccionada[0];
+                    var distancia = piezaSeleccionadaX - movimientoSeleccionadoX;
+                    var incrementaPosicion = piezaSeleccionadaX;
                     for (int i = 0; i < distancia - 1; i++)
                     {
-                        var hayObstaculo = Product.tablero[--incrementaPosicion, piezaSeleccionada[1]] != null;
+                        var hayObstaculo = Product.tablero[--incrementaPosicion, piezaSeleccionadaY] != null;
 
                         if (hayObstaculo)
                             throw new ObstaculoException();
                     }
                 }
-                else if (movimientoSeleccionado[1] > piezaSeleccionada[1])
+                else if (movimientoSeleccionadoY > piezaSeleccionadaY)
                 {
-                    var distancia = movimientoSeleccionado[1] - piezaSeleccionada[1];
-                    var incrementaPosicion = piezaSeleccionada[1];
+                    var distancia = movimientoSeleccionadoY - piezaSeleccionadaY;
+                    var incrementaPosicion = piezaSeleccionadaY;
                     for (int i = 0; i < distancia - 1; i++)
                     {
-                        var hayObstaculo = Product.tablero[piezaSeleccionada[0], ++incrementaPosicion] != null;
+                        var hayObstaculo = Product.tablero[piezaSeleccionadaX, ++incrementaPosicion] != null;
 
                         if (hayObstaculo)
                             throw new ObstaculoException();
                     }
                 }
-                else if (movimientoSeleccionado[1] < piezaSeleccionada[1])
+                else if (movimientoSeleccionadoY < piezaSeleccionadaY)
                 {
-                    var distancia = piezaSeleccionada[1] - movimientoSeleccionado[1];
-                    var incrementaPosicion = piezaSeleccionada[1];
+                    var distancia = piezaSeleccionadaY - movimientoSeleccionadoY;
+                    var incrementaPosicion = piezaSeleccionadaY;
                     for (int i = 0; i < distancia - 1; i++)
                     {
-                        var hayObstaculo = Product.tablero[piezaSeleccionada[0], --incrementaPosicion] != null;
+                        var hayObstaculo = Product.tablero[piezaSeleccionadaX, --incrementaPosicion] != null;
 
                         if (hayObstaculo)
                             throw new ObstaculoException();
                     }
                 }
 
-            if (movimientoSeleccionado[0] != piezaSeleccionada[0] && movimientoSeleccionado[1] != piezaSeleccionada[1])
-                if (Math.Abs(piezaSeleccionada[0] - movimientoSeleccionado[0]) != Math.Abs(piezaSeleccionada[1] - movimientoSeleccionado[1]))
+            if (movimientoSeleccionadoX != piezaSeleccionadaX && movimientoSeleccionadoY != piezaSeleccionadaY)
+                if (Math.Abs(piezaSeleccionadaX - movimientoSeleccionadoX) != Math.Abs(piezaSeleccionadaY - movimientoSeleccionadoY))
                     throw new MovimientoInvalidoException();
 
-                else if (movimientoSeleccionado[0] > piezaSeleccionada[0] && movimientoSeleccionado[1] > piezaSeleccionada[1])
+                else if (movimientoSeleccionadoX > piezaSeleccionadaX && movimientoSeleccionadoY > piezaSeleccionadaY)
                 {
-                    var distancia = movimientoSeleccionado[0] - piezaSeleccionada[0];
-                    var incrementaPosicionX = piezaSeleccionada[0];
-                    var incrementaPosicionY = piezaSeleccionada[1];
+                    var distancia = movimientoSeleccionadoX - piezaSeleccionadaX;
+                    var incrementaPosicionX = piezaSeleccionadaX;
+                    var incrementaPosicionY = piezaSeleccionadaY;
 
                     for (int i = 0; i < distancia - 1; i++)
                     {
@@ -92,11 +89,11 @@ namespace Flyweight_y_Factory.Flyweight.ConcreteFlyweight.Ajedrez
                             throw new ObstaculoException();
                     }
                 }
-                else if (movimientoSeleccionado[0] < piezaSeleccionada[0] && movimientoSeleccionado[1] < piezaSeleccionada[1])
+                else if (movimientoSeleccionadoX < piezaSeleccionadaX && movimientoSeleccionadoY < piezaSeleccionadaY)
                 {
-                    var distancia = piezaSeleccionada[0] - movimientoSeleccionado[0];
-                    var incrementaPosicionX = piezaSeleccionada[0];
-                    var incrementaPosicionY = piezaSeleccionada[1];
+                    var distancia = piezaSeleccionadaX - movimientoSeleccionadoX;
+                    var incrementaPosicionX = piezaSeleccionadaX;
+                    var incrementaPosicionY = piezaSeleccionadaY;
 
                     for (int i = 0; i < distancia - 1; i++)
                     {
@@ -106,11 +103,11 @@ namespace Flyweight_y_Factory.Flyweight.ConcreteFlyweight.Ajedrez
                             throw new ObstaculoException();
                     }
                 }
-                else if (movimientoSeleccionado[0] < piezaSeleccionada[0] && movimientoSeleccionado[1] > piezaSeleccionada[1])
+                else if (movimientoSeleccionadoX < piezaSeleccionadaX && movimientoSeleccionadoY > piezaSeleccionadaY)
                 {
-                    var distancia = movimientoSeleccionado[1] - piezaSeleccionada[1];
-                    var incrementaPosicionX = piezaSeleccionada[0];
-                    var incrementaPosicionY = piezaSeleccionada[1];
+                    var distancia = movimientoSeleccionadoY - piezaSeleccionadaY;
+                    var incrementaPosicionX = piezaSeleccionadaX;
+                    var incrementaPosicionY = piezaSeleccionadaY;
 
                     for (int i = 0; i < distancia - 1; i++)
                     {
@@ -120,11 +117,11 @@ namespace Flyweight_y_Factory.Flyweight.ConcreteFlyweight.Ajedrez
                             throw new ObstaculoException();
                     }
                 }
-                else if (movimientoSeleccionado[0] > piezaSeleccionada[0] && movimientoSeleccionado[1] < piezaSeleccionada[1])
+                else if (movimientoSeleccionadoX > piezaSeleccionadaX && movimientoSeleccionadoY < piezaSeleccionadaY)
                 {
-                    var distancia = piezaSeleccionada[1] - movimientoSeleccionado[1];
-                    var incrementaPosicionX = piezaSeleccionada[0];
-                    var incrementaPosicionY = piezaSeleccionada[1];
+                    var distancia = piezaSeleccionadaY - movimientoSeleccionadoY;
+                    var incrementaPosicionX = piezaSeleccionadaX;
+                    var incrementaPosicionY = piezaSeleccionadaY;
 
                     for (int i = 0; i < distancia - 1; i++)
                     {
@@ -135,14 +132,12 @@ namespace Flyweight_y_Factory.Flyweight.ConcreteFlyweight.Ajedrez
                     }
                 }
 
-            if (Product.tablero[movimientoSeleccionado[0], movimientoSeleccionado[1]] != null && Product.jugadores[movimientoSeleccionado[0], movimientoSeleccionado[1]] == Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]])
+            if (Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY] != null && Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY].jugador == Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY].jugador)
                 throw new MismoColorException();
             else
             {
-                Product.tablero[movimientoSeleccionado[0], movimientoSeleccionado[1]] = Product.tablero[piezaSeleccionada[0], piezaSeleccionada[1]];
-                Product.jugadores[movimientoSeleccionado[0], movimientoSeleccionado[1]] = Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]];
-                Product.tablero[piezaSeleccionada[0], piezaSeleccionada[1]] = null;
-                Product.jugadores[piezaSeleccionada[0], piezaSeleccionada[1]] = ' ';
+                Product.tablero[movimientoSeleccionadoX, movimientoSeleccionadoY] = Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY];
+                Product.tablero[piezaSeleccionadaX, piezaSeleccionadaY] = null;
             }
 
         }

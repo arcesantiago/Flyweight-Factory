@@ -12,29 +12,34 @@ namespace Flyweight_y_Factory.Flyweight.FlyweightFactory
     class PiezaFactory
     {
 
-        private Dictionary<char, IPieza> _piezas =
-          new Dictionary<char, IPieza>();
+        private readonly Dictionary<char, Pieza> _piezas;
 
-        public IPieza GetPieza(char key)
+        public PiezaFactory()
+        {
+            _piezas = new Dictionary<char, Pieza>();
+        }
+
+        public Pieza GetPieza(char key)
         {
 
-            IPieza piezas = null;
+            Pieza piezas = null;
+
             if (_piezas.ContainsKey(key))
             {
                 piezas = _piezas[key];
             }
             else
-
             {
                 switch (key)
                 {
-                    case 'P': piezas = new Peon(); break;
-                    case 'R': piezas = new Rey(); break;
-                    case 'r': piezas = new Reina(); break;
-                    case 'C': piezas = new Caballo(); break;
-                    case 'A': piezas = new Alfil(); break;
-                    case 'T': piezas = new Torre(); break;
-                    case 'D': piezas = new Dama(); break;
+                    case 'P': piezas = new Peon(key); break;
+                    case 'R': piezas = new Rey(key); break;
+                    case 'r': piezas = new Reina(key); break;
+                    case 'C': piezas = new Caballo(key); break;
+                    case 'A': piezas = new Alfil(key); break;
+                    case 'T': piezas = new Torre(key); break;
+
+                    case 'D': piezas = new Dama(key); break;
                 }
                 _piezas.Add(key, piezas);
             }

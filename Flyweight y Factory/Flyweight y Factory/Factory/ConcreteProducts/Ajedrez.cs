@@ -2,6 +2,7 @@
 using Flyweight_y_Factory.Factory.Products;
 using Flyweight_y_Factory.Flyweight.Flyweight;
 using Flyweight_y_Factory.Flyweight.FlyweightFactory;
+using Flyweight_y_Factory.Jugadores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,96 +19,75 @@ namespace Flyweight_y_Factory.Factory.ConcreteProducts
 
             PiezaFactory factory = new PiezaFactory();
 
-            IPieza peon = factory.GetPieza('P');
-            IPieza alfil = factory.GetPieza('A');
-            IPieza caballo = factory.GetPieza('C');
-            IPieza rey = factory.GetPieza('R');
-            IPieza reina = factory.GetPieza('r');
-            IPieza torre = factory.GetPieza('T');
+            Pieza peon = factory.GetPieza(key:'P');
+            Pieza alfil = factory.GetPieza('A');
+            Pieza caballo = factory.GetPieza('C');
+            Pieza rey = factory.GetPieza('R');
+            Pieza reina = factory.GetPieza('r');
+            Pieza torre = factory.GetPieza('T');
 
-            tablero[0, 1] = peon;
-            tablero[1, 1] = peon;
-            tablero[2, 1] = peon;
-            tablero[3, 1] = peon;
-            tablero[4, 1] = peon;
-            tablero[5, 1] = peon;
-            tablero[6, 1] = peon;
-            tablero[7, 1] = peon;
+            Jugador blanco = new Jugador(color:'B');
+            Jugador negro = new Jugador('N');
 
-            tablero[0, 6] = peon;
-            tablero[1, 6] = peon;
-            tablero[2, 6] = peon;
-            tablero[3, 6] = peon;
-            tablero[4, 6] = peon;
-            tablero[5, 6] = peon;
-            tablero[6, 6] = peon;
-            tablero[7, 6] = peon;
+            JugadorPieza peonBlanco = new JugadorPieza(jugador: blanco, pieza: peon);
+            JugadorPieza peonNegro = new JugadorPieza(negro, peon);
 
-            tablero[0, 0] = torre;
-            tablero[7, 0] = torre;
+            JugadorPieza alfilBlanco = new JugadorPieza(blanco, alfil);
+            JugadorPieza alfilNegro = new JugadorPieza(negro, alfil);
 
-            tablero[0, 7] = torre;
-            tablero[7, 7] = torre;
+            JugadorPieza caballoBlanco = new JugadorPieza( blanco, caballo);
+            JugadorPieza caballoNegro = new JugadorPieza(negro, caballo);
 
-            tablero[1, 0] = caballo;
-            tablero[6, 0] = caballo;
+            JugadorPieza reyBlanco = new JugadorPieza(blanco, reina);
+            JugadorPieza reyNegro = new JugadorPieza(negro, reina);
 
-            tablero[1, 7] = caballo;
-            tablero[6, 7] = caballo;
+            JugadorPieza reinaBlanco = new JugadorPieza( blanco, rey);
+            JugadorPieza reinaNegro = new JugadorPieza(negro, rey);
 
-            tablero[2, 0] = alfil;
-            tablero[5, 0] = alfil;
+            JugadorPieza torreBlanco = new JugadorPieza(blanco,torre);
+            JugadorPieza torreNegro = new JugadorPieza(negro, torre);
 
-            tablero[2, 7] = alfil;
-            tablero[5, 7] = alfil;
+            tablero[0, 1] = peonBlanco;
+            tablero[1, 1] = peonBlanco;
+            tablero[2, 1] = peonBlanco;
+            tablero[3, 1] = peonBlanco;
+            tablero[4, 1] = peonBlanco;
+            tablero[5, 1] = peonBlanco;
+            tablero[6, 1] = peonBlanco;
+            tablero[7, 1] = peonBlanco;
 
-            tablero[3, 0] = reina;
-            tablero[4, 7] = reina;
+            tablero[0, 6] = peonNegro;
+            tablero[1, 6] = peonNegro;
+            tablero[2, 6] = peonNegro;
+            tablero[3, 6] = peonNegro;
+            tablero[4, 6] = peonNegro;
+            tablero[5, 6] = peonNegro;
+            tablero[6, 6] = peonNegro;
+            tablero[7, 6] = peonNegro;
 
-            tablero[4, 0] = rey;
-            tablero[3, 7] = rey;
+            tablero[0, 0] = torreBlanco;
+            tablero[7, 0] = torreBlanco;
 
-            jugadores[0, 1] = blanco;
-            jugadores[1, 1] = blanco;
-            jugadores[2, 1] = blanco;
-            jugadores[3, 1] = blanco;
-            jugadores[4, 1] = blanco;
-            jugadores[5, 1] = blanco;
-            jugadores[6, 1] = blanco;
-            jugadores[7, 1] = blanco;
+            tablero[0, 7] = torreNegro;
+            tablero[7, 7] = torreNegro;
 
-            jugadores[0, 6] = negro;
-            jugadores[1, 6] = negro;
-            jugadores[2, 6] = negro;
-            jugadores[3, 6] = negro;
-            jugadores[4, 6] = negro;
-            jugadores[5, 6] = negro;
-            jugadores[6, 6] = negro;
-            jugadores[7, 6] = negro;
+            tablero[1, 0] = alfilBlanco;
+            tablero[6, 0] = alfilBlanco;
 
-            jugadores[0, 0] = blanco;
-            jugadores[7, 0] = blanco;
+            tablero[1, 7] = alfilNegro;
+            tablero[6, 7] = alfilNegro;
 
-            jugadores[0, 7] = negro;
-            jugadores[7, 7] = negro;
+            tablero[2, 0] = caballoBlanco;
+            tablero[5, 0] = caballoBlanco;
 
-            jugadores[1, 0] = blanco;
-            jugadores[6, 0] = blanco;
+            tablero[2, 7] = caballoNegro;
+            tablero[5, 7] = caballoNegro;
 
-            jugadores[1, 7] = negro;
-            jugadores[6, 7] = negro;
+            tablero[3, 0] = reyBlanco;
+            tablero[4, 7] = reyNegro;
 
-            jugadores[2, 0] = blanco;
-            jugadores[5, 0] = blanco;
-
-            jugadores[2, 7] = negro;
-            jugadores[5, 7] = negro;
-
-            jugadores[3, 0] = blanco;
-            jugadores[4, 7] = negro;
-
-            jugadores[4, 0] = blanco;
-            jugadores[3, 7] = negro;
+            tablero[4, 0] = reinaBlanco;
+            tablero[3, 7] = reinaNegro;
 
         }
     }
